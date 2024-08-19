@@ -51,6 +51,10 @@ fastify.get(
 fastify.listen({ port: 3000 });
 ```
 
+## TODOS
+
+1.Add tests
+
 ## Acknowledgements
 
 ## License
