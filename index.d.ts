@@ -1,42 +1,38 @@
-import OAuth2Server from "@node-oauth/oauth2-server";
-import {
-  FastifyPluginCallback,
-  onRequestHookHandler,
-  RouteHandlerMethod,
-} from "fastify";
+import OAuth2Server from '@node-oauth/oauth2-server'
+import { FastifyPluginCallback, RouteHandlerMethod } from 'fastify'
 
-type OAuth2ServerPluginOptions = {
-  useErrorHandler?: boolean;
-};
+interface OAuth2ServerPluginOptions {
+  useErrorHandler?: boolean
+}
 
-type OAuth2ServerPlugin = {
-  server: OAuth2Server;
+interface OAuth2ServerPlugin {
+  server: OAuth2Server
   token: (
     options?: OAuth2Server.TokenOptions & OAuth2ServerPluginOptions
-  ) => RouteHandlerMethod;
+  ) => RouteHandlerMethod
   authenticate: (
     options?: OAuth2Server.AuthenticateOptions & OAuth2ServerPluginOptions
-  ) => RouteHandlerMethod;
+  ) => RouteHandlerMethod
   authorize: (
     options?: OAuth2Server.AuthorizeOptions & OAuth2ServerPluginOptions
-  ) => RouteHandlerMethod;
-};
+  ) => RouteHandlerMethod
+}
 
-declare module "fastify" {
+declare module 'fastify' {
   export interface FastifyInstance {
-    oauthServer: OAuth2ServerPlugin;
+    oauthServer: OAuth2ServerPlugin
   }
   export interface FastifyReply {
     oauth: {
-      token: OAuth2Server.Token;
-      code: OAuth2Server.AuthorizationCode;
-    };
+      token: OAuth2Server.Token
+      code: OAuth2Server.AuthorizationCode
+    }
   }
 }
 
 declare const fastifyOauth2Server: FastifyPluginCallback<
-  OAuth2Server.ServerOptions & OAuth2ServerPluginOptions
->;
+OAuth2Server.ServerOptions & OAuth2ServerPluginOptions
+>
 
-export { fastifyOauth2Server };
-export default fastifyOauth2Server;
+export { fastifyOauth2Server }
+export default fastifyOauth2Server
