@@ -1,0 +1,36 @@
+{
+  "name": "fastify-oauth2-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run unit && npm run test:typescript",
+    "lint": "standard && npm run lint:typescript",
+    "lint:typescript": "ts-standard",
+    "test:typescript": "tsd",
+    "unit": "node --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "types": "index.d.ts",
+  "dependencies": {
+    "@node-oauth/oauth2-server": "^5.2.0",
+    "fastify-plugin": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.4",
+    "fastify": "^4.28.1",
+    "fastify-tsconfig": "^2.0.0",
+    "standard": "^17.0.0",
+    "ts-standard": "^12.0.1",
+    "tsd": "^0.30.4",
+    "typescript": "^5.2.2"
+  },
+  "tsd": {
+    "directory": "test"
+  }
+}
