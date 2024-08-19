@@ -91,26 +91,22 @@ function authorize(oauthServer, { useErrorHandler, ...options }) {
 
 /** @type {import("fastify").FastifyPluginAsync} */
 async function fastifyOauth2Server(instance, options) {
-  let _options;
-  if (Function.prototype.isPrototypeOf(options)) {
-    _options = Object.assign({}, defaultOptions);
-  } else {
-    _options = Object.assign({}, defaultOptions, options);
-  }
+  const _options = Object.assign(options, defaultOptions);
+  const { useErrorHandler, ...oauthOptions } = _options;
 
-  const oauthServer = new OAuth2Server(_options);
+  const oauthServer = new OAuth2Server(oauthOptions);
 
   instance.decorateReply("oauth", {});
   instance.decorate("oauthServer", {
     server: oauthServer,
     authenticate: function (options = {}) {
-      return authenticate(oauthServer, options);
+      return authenticate(oauthServer, { useErrorHandler, ...options });
     },
     token: function (options = {}) {
-      return token(oauthServer, options);
+      return token(oauthServer, { useErrorHandler, ...options });
     },
     authorize: function (options = {}) {
-      return authorize(oauthServer, options);
+      return authorize(oauthServer, { useErrorHandler, ...options });
     },
   });
 }
