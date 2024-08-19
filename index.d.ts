@@ -5,13 +5,21 @@ import {
   RouteHandlerMethod,
 } from "fastify";
 
+type OAuth2ServerPluginOptions = {
+  useErrorHandler?: boolean;
+};
+
 type OAuth2ServerPlugin = {
   server: OAuth2Server;
-  token: (options?: OAuth2Server.TokenOptions) => RouteHandlerMethod;
-  authenticate: (
-    options?: OAuth2Server.AuthenticateOptions
+  token: (
+    options?: OAuth2Server.TokenOptions & OAuth2ServerPluginOptions
   ) => RouteHandlerMethod;
-  authorize: (options?: OAuth2Server.AuthorizeOptions) => RouteHandlerMethod;
+  authenticate: (
+    options?: OAuth2Server.AuthenticateOptions & OAuth2ServerPluginOptions
+  ) => RouteHandlerMethod;
+  authorize: (
+    options?: OAuth2Server.AuthorizeOptions & OAuth2ServerPluginOptions
+  ) => RouteHandlerMethod;
 };
 
 declare module "fastify" {
@@ -26,7 +34,9 @@ declare module "fastify" {
   }
 }
 
-declare const fastifyOauth2Server: FastifyPluginCallback<OAuth2Server.ServerOptions>;
+declare const fastifyOauth2Server: FastifyPluginCallback<
+  OAuth2Server.ServerOptions & OAuth2ServerPluginOptions
+>;
 
 export { fastifyOauth2Server };
 export default fastifyOauth2Server;
