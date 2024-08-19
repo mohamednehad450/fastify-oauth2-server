@@ -1,7 +1,12 @@
 {
   "name": "fastify-oauth2-server",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "a @node-oauth/oauth2-server wrapper for fastify",
+  "homepage": "https://github.com/mohamednehad450/fastify-oauth2-server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamednehad450/fastify-oauth2-server.git"
+  },
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -13,7 +18,12 @@
     "test:typescript": "tsd",
     "unit": "node --test"
   },
-  "keywords": [],
+  "keywords": [
+    "fastify",
+    "oauth2",
+    "oauth2-server",
+    "fastify-oauth2-server"
+  ],
   "author": "",
   "license": "MIT",
   "types": "index.d.ts",
